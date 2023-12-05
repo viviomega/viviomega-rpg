@@ -16,6 +16,21 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
   },
+  {
+    path: "/sign",
+    name: "sign",
+    component: () =>
+      import(/* webpackChunkName: "sign" */ "../views/sign/index.vue"),
+    children: [
+      {
+        // Auth認証の登録
+        path: "up",
+        name: "signUp",
+        component: () =>
+          import(/* webpackChunkName: "up" */ "../views/sign/Up.vue"),
+      },
+    ],
+  },
 ];
 
 const router = createRouter({
