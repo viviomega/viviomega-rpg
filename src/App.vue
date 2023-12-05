@@ -6,12 +6,6 @@
   </v-app>
 </template>
 
-<script>
-export default {
-  name: "App",
-
-  data: () => ({
-    //
-  }),
-};
+<script setup>
+import { firebaseApp } from "./firebase example";
 </script>
