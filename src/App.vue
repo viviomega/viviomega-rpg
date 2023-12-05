@@ -7,5 +7,5 @@
 </template>
 
 <script setup>
-import { firebaseApp } from "./firebase example";
+import { firebaseApp } from "./firebase";
 </script>
