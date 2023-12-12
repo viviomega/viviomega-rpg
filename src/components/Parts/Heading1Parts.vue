@@ -1,5 +1,5 @@
 <template>
-  <h1 class="text-h5 text-md-h4 text-lg-h2 font-weight-black">
+  <h1 class="text-h5 text-md-h4 text-lg-h2">
     {{ value }}
   </h1>
 </template>
