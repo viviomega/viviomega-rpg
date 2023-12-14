@@ -23,17 +23,21 @@
       ></v-text-field>
     </v-card-text>
     <v-card-actions class="d-flext flex-row-reverse">
-      <v-btn color="primary"> SignUp </v-btn>
+      <v-btn color="primary" @click="submit"> SignUp </v-btn>
     </v-card-actions>
   </v-card-item>
 </template>
 <script setup>
 import useVuelidate from "@vuelidate/core";
-import { reactive, ref } from "vue";
+import { reactive, ref, defineEmits } from "vue";
 
 import PH1 from "@/components/Parts/Heading1Parts.vue";
 
 import { validEmail, validPassword } from "@/plugins/validatorRule";
+
+const emit = defineEmits({
+  value: {},
+});
 
 const formValue = reactive({
   email: "",
@@ -51,4 +55,10 @@ const v$ = reactive(
 );
 
 const show = ref(false);
+
+const submit = () => {
+  const isFormCorrect = v$.value.$validate();
+  if (!isFormCorrect) return;
+  emit("value", formValue);
+};
 </script>
