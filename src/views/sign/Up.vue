@@ -1,6 +1,10 @@
 <template>
   <v-container>
-    <t-auth-form @value="sinup" :errorMessage="errorObject.errorMessage" />
+    <t-auth-form
+      class="mt-8"
+      @value="sinup"
+      :errorMessage="errorObject.errorMessage"
+    />
   </v-container>
 </template>
 

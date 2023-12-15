@@ -1,4 +1,4 @@
 @use "vuetify";
 .errorMessage {
-  color: #e53935;
+  color: rgb(var(--v-theme-error));
 }
