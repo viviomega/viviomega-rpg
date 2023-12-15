@@ -2,6 +2,12 @@
   <v-card-item>
     <v-card-title> <p-h1 value="SignUp"></p-h1> </v-card-title>
     <v-card-text class="my-3">
+      <p-p
+        v-show="errorMessage"
+        :value="errorMessage"
+        class="errorMessage"
+      ></p-p>
+
       <v-text-field
         v-model="formValue.email"
         label="E-mail"
@@ -29,9 +35,10 @@
 </template>
 <script setup>
 import useVuelidate from "@vuelidate/core";
-import { reactive, ref, defineEmits } from "vue";
+import { reactive, ref, defineEmits, defineProps } from "vue";
 
 import PH1 from "@/components/Parts/Heading1Parts.vue";
+import PP from "@/components/Parts/PragraphParts.vue";
 
 import { validEmail, validPassword } from "@/plugins/validatorRule";
 
@@ -42,6 +49,15 @@ const emit = defineEmits({
 const formValue = reactive({
   email: "",
   password: "",
+});
+
+// エラーメッセージ
+defineProps({
+  errorMessage: {
+    type: String,
+    require: false,
+    default: "",
+  },
 });
 
 const v$ = reactive(
@@ -56,9 +72,9 @@ const v$ = reactive(
 
 const show = ref(false);
 
-const submit = () => {
-  const isFormCorrect = v$.value.$validate();
-  if (!isFormCorrect) return;
+const submit = async () => {
+  const validError = await v$.value.$validate();
+  if (!validError) return;
   emit("value", formValue);
 };
 </script>

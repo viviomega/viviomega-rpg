@@ -1,11 +1,12 @@
 <template>
   <v-container>
-    <t-auth-form @value="sinup" />
+    <t-auth-form @value="sinup" :errorMessage="errorObject.errorMessage" />
   </v-container>
 </template>
 
 <script setup>
 import TAuthForm from "@/components/Templates/AuthFormTemplates.vue";
+import { reactive, ref, defineEmits } from "vue";
 
 import {
   getAuth,
@@ -13,6 +14,11 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
+
+const errorObject = reactive({
+  errorCode: "",
+  errorMessage: "",
+});
 
 const sinup = async (value) => {
   console.log(value);
@@ -25,11 +31,15 @@ const sinup = async (value) => {
     })
     .catch((error) => {
       // 失敗時処理
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode);
-      console.log(errorMessage);
-      // setTimeout(() => (loading.value = false), 1500);
+      errorObject.errorCode = error.code;
+      errorObject.errorMessage = error.errorMessage;
+
+      if (errorObject.errorCode === "auth/user-not-found") {
+        errorObject.errorMessage = "登録されていないメールアドレストです";
+      } else if (errorObject.errorCode === "auth/wrong-password") {
+        errorObject.errorMessage = "パスワードが違います";
+      }
+      setTimeout(() => (loading.value = false), 1500);
     });
 };
 </script>
