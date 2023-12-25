@@ -1,11 +1,15 @@
 <template>
-  <v-container>
-    <t-auth-form
-      class="mt-8"
-      @value="sinup"
-      :errorMessage="errorObject.errorMessage"
-    />
-  </v-container>
+  <v-row no-gutters class="pa-0 d-flex justify-center">
+    <v-col cols="12" lg="5" class="pa-0">
+      <v-container class="pa-0">
+        <t-auth-form
+          class="mt-5"
+          @value="sinup"
+          :errorMessage="errorObject.errorMessage"
+        />
+      </v-container>
+    </v-col>
+  </v-row>
 </template>
 
 <script setup>
