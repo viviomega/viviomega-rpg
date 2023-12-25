@@ -1,5 +1,5 @@
 <template>
-  <h2 class="text-h6 text-md-h5 text-lg-h3 font-weight-black my-2">
+  <h2 class="text-h6 text-md-h5 text-lg-h3 my-2">
     {{ value }}
   </h2>
 </template>
