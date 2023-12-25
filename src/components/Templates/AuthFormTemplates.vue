@@ -1,7 +1,7 @@
 <template>
   <v-card-item>
-    <v-card-title> <p-h1 value="SignUp"></p-h1> </v-card-title>
-    <v-card-text class="my-3">
+    <v-card-title> <p-h2 value="SignUp"></p-h2> </v-card-title>
+    <v-card-text class="my-1">
       <p-p
         v-show="errorMessage"
         :value="errorMessage"
@@ -37,7 +37,7 @@
 import useVuelidate from "@vuelidate/core";
 import { reactive, ref, defineEmits, defineProps } from "vue";
 
-import PH1 from "@/components/Parts/Heading1Parts.vue";
+import PH2 from "@/components/Parts/Heading2Parts.vue";
 import PP from "@/components/Parts/PragraphParts.vue";
 
 import { validEmail, validPassword } from "@/plugins/validatorRule";
